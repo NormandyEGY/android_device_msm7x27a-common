@@ -310,6 +310,7 @@ private:
         virtual String8     getParameters(const String8& keys);
                 uint32_t    devices() { return mDevices; }
         virtual status_t    getRenderPosition(uint32_t *dspFrames);
+        virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp);
 
     private:
                 AudioHardware* mHardware;
@@ -344,6 +345,10 @@ private:
         virtual String8     getParameters(const String8& keys);
                 uint32_t    devices() { return mDevices; }
         virtual status_t    getRenderPosition(uint32_t *dspFrames);
+
+        virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp);
+
+        virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp);
 
     private:
                 AudioHardware* mHardware;
