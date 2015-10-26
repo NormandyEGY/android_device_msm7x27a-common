@@ -229,6 +229,14 @@ public:
                                 uint32_t *channels=0,
                                 uint32_t *sampleRate=0,
                                 status_t *status=0);
+    virtual AudioStreamOut* openOutputStreamWithFlags(
+                                uint32_t devices,
+                                audio_output_flags_t flags=(audio_output_flags_t)0,
+                                int *format=0,
+                                uint32_t *channels=0,
+                                uint32_t *sampleRate=0,
+                                status_t *status=0);
+
     virtual AudioStreamIn* openInputStream(
 
                                 uint32_t devices,
@@ -362,8 +370,6 @@ private:
 
         virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp);
 
-        virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp);
-
     private:
                 AudioHardware* mHardware;
                 int         mFd;
@@ -436,9 +442,6 @@ public:
     virtual status_t    getRenderPosition(uint32_t *dspFrames);
 
     virtual status_t    getNextWriteTimestamp(int64_t *timestamp);
-    virtual status_t    setObserver(void *observer);
-    virtual status_t    getBufferInfo(buf_info **buf);
-    virtual status_t    isBufferAvailable(int *isAvail);
 
 	void* memBufferAlloc(int nSize, int32_t *ion_fd);
 
@@ -460,7 +463,6 @@ private:
     bool                mEosEventReceived;
     uint32_t    mDevices;
     AudioHardware* mHardware;
-    AudioEventObserver *mObserver;
 
     void                createEventThread();
     void                bufferAlloc();
