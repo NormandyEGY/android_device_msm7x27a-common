@@ -27,12 +27,12 @@ TARGET_BOARD_PLATFORM := msm7x27a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a5
+TARGET_CPU_VARIANT := cortex-a9
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm7x27a-common/include
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_GLOBAL_CFLAGS += -mtune=cortex-a5 -mfpu=neon-vfpv4 -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a5 -mfpu=neon-vfpv4 -mfloat-abi=softfp
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon-vfpv4 -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 
 ## Kernel
 BOARD_KERNEL_BASE := 0x00200000
@@ -57,7 +57,7 @@ BOARD_USES_QCOM_HARDWARE := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
 ## Video
-TARGET_QCOM_MEDIA_VARIANT := legacy
+TARGET_QCOM_MEDIA_VARIANT := caf
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_LEGACY_MMPARSER
 
@@ -69,7 +69,7 @@ TARGET_HAS_QACT := true
 
 ## EGL, graphics
 USE_OPENGL_RENDERER := true
-TARGET_QCOM_DISPLAY_VARIANT := legacy
+TARGET_QCOM_DISPLAY_VARIANT := caf
 TARGET_DOESNT_USE_FENCE_SYNC := true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 BOARD_EGL_CFG := device/samsung/msm7x27a-common/prebuilt/lib/egl/egl.cfg
@@ -142,7 +142,7 @@ TARGET_SYSTEM_PROP := device/samsung/msm7x27a-common/system.prop
 
 # Webview
 
-PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
+#PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 
 ## Recovery
 TARGET_RECOVERY_FSTAB := device/samsung/msm7x27a-common/rootdir/fstab.qcom
@@ -155,7 +155,7 @@ BOARD_HAS_DOWNLOAD_MODE := true
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/msm7x27a-common/rootdir/graphics/graphics.c ../../../device/samsung/msm7x27a-common/rootdir/graphics/graphics_overlay.c
+
 ## Partition sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 12582912
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 12582912
