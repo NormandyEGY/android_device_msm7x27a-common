@@ -1,0 +1,7 @@
+#============= surfaceflinger ==============
+allow surfaceflinger media_rw_data_file:file { read getattr open execute };
+allow surfaceflinger device:chr_file { read write ioctl open };
+allow surfaceflinger display_service:service_manager { add find };
+allow surfaceflinger system_file:file execmod;
+allow surfaceflinger shell_data_file:dir search;
+

@@ -1,0 +1,14 @@
+#============= init ==============
+allow init block_device:blk_file write;
+allow init debugfs:dir mounton;
+allow init media_rw_data_file:file execute;
+allow init self:netlink_kobject_uevent_socket { read bind create setopt };
+allow init socket_device:sock_file { create setattr write getattr unlink };
+allow init system_file:file { execmod execute_no_trans };
+allow init tmpfs:lnk_file create;
+allow init self:capability sys_module;
+allow init self:netlink_route_socket { bind create };
+allow init self:netlink_socket { read bind create write };
+allow init shell_exec:file execute_no_trans;
+allow init video_device:chr_file { ioctl write };
+

@@ -1,0 +1,5 @@
+#============= zygote ==============
+allow zygote media_rw_data_file:file { read getattr open execute };
+allow zygote system_file:file execmod;
+
+

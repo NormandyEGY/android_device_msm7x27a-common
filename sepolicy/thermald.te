@@ -1,0 +1,13 @@
+# thermald service
+type thermald, domain;
+type thermald_exec, exec_type, file_type;
+allow thermald device:chr_file { read write open ioctl };
+allow thermald self:capability { net_admin dac_override };
+allow thermald self:netlink_kobject_uevent_socket { read bind create setopt };
+allow thermald socket_device:dir { write add_name };
+allow thermald socket_device:sock_file { create setattr };
+allow thermald sysfs:file write;
+allow thermald sysfs_devices_system_cpu:file write;
+allow thermald system_file:file execmod;
+allow thermald thermald_exec:file execmod;
+init_daemon_domain(thermald)

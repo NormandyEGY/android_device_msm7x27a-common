@@ -1,0 +1,2 @@
+#============= perfprofd ==============
+allow perfprofd media_rw_data_file:file read;

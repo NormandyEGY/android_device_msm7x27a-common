@@ -1,0 +1,6 @@
+#============= sysinit ==============
+allow sysinit media_rw_data_file:file { read execute open };
+allow sysinit logcat_exec:file { read getattr open execute execute_no_trans };
+allow sysinit logd:unix_stream_socket connectto;
+allow sysinit logdr_socket:sock_file write;
+allow sysinit system_data_file:file { write open };

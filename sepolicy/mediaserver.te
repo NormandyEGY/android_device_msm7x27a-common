@@ -1,0 +1,4 @@
+#============= mediaserver ==============
+allow mediaserver media_rw_data_file:file execute;
+allow mediaserver device:chr_file { read write ioctl open };
+allow mediaserver self:capability sys_nice;

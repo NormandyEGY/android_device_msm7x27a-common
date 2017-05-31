@@ -1,0 +1,8 @@
+#============= rild ==============
+allow rild media_rw_data_file:file read;
+allow rild device:chr_file { read write open };
+allow rild socket_device:dir { write add_name };
+allow rild socket_device:sock_file { write create setattr };
+allow rild system_file:file execmod;
+allow rild qmuxd:unix_stream_socket connectto;
+

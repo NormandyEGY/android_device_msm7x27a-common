@@ -1,0 +1,2 @@
+allow system_app device:chr_file { read write ioctl open };
+

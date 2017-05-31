@@ -1,0 +1,12 @@
+# mpdecision service
+type mpdecision, domain;
+type mpdecision_exec, exec_type, file_type;
+allow mpdecision mpdecision_exec:file execmod;
+allow mpdecision self:capability { net_admin chown fsetid };
+allow mpdecision self:netlink_kobject_uevent_socket { read bind create setopt };
+allow mpdecision socket_device:dir { write add_name };
+allow mpdecision socket_device:sock_file { create setattr };
+allow mpdecision sysfs:file write;
+allow mpdecision sysfs_devices_system_cpu:file write;
+allow mpdecision system_file:file execmod;
+init_daemon_domain(mpdecision)

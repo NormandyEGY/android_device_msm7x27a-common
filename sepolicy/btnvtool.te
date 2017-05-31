@@ -1,0 +1,6 @@
+# btnvtool service
+type btnvtool, domain;
+type btnvtool_exec, exec_type, file_type;
+allow btnvtool btnvtool_exec:file execmod;
+allow btnvtool unlabeled:file getattr;
+init_daemon_domain(btnvtool)

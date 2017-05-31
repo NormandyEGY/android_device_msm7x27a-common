@@ -1,0 +1,2 @@
+#============= logd ==============
+allow logd media_rw_data_file:file read;

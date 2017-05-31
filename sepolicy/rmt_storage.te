@@ -1,0 +1,8 @@
+# rmt_storage service
+type rmt_storage, domain;
+type rmt_storage_exec, exec_type, file_type;
+allow rmt_storage block_device:blk_file { read write open };
+allow rmt_storage device:chr_file { read write ioctl open };
+allow rmt_storage rmt_storage_exec:file execmod;
+allow rmt_storage self:capability { setuid setgid };
+init_daemon_domain(rmt_storage)

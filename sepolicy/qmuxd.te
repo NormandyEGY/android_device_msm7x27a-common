@@ -1,0 +1,11 @@
+# qmuxd service
+type qmuxd, domain;
+type qmuxd_exec, exec_type, file_type;
+allow qmuxd device:chr_file { read write open ioctl };
+allow qmuxd qmuxd_exec:file execmod;
+allow qmuxd socket_device:dir { write remove_name add_name };
+allow qmuxd socket_device:sock_file { getattr unlink create setattr };
+allow qmuxd sysfs:file write;
+allow qmuxd sysfs_wake_lock:file { open append };
+allow qmuxd system_file:file execmod;
+init_daemon_domain(qmuxd)
