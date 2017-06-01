@@ -1,3 +1,18 @@
+diff --git a/app.te b/app.te
+index 66e596e..99a71cd 100644
+--- a/app.te
++++ b/app.te
+@@ -351,8 +351,8 @@ neverallow appdomain efs_file:dir_file_class_set write;
+ neverallow { appdomain -shell } efs_file:dir_file_class_set read;
+ 
+ # Write to various pseudo file systems.
+-neverallow { appdomain -bluetooth -nfc }
+-    sysfs:dir_file_class_set write;
++#neverallow { appdomain -bluetooth -nfc }
++#    sysfs:dir_file_class_set write;
+ neverallow appdomain
+     proc:dir_file_class_set write;
+ 
 diff --git a/domain.te b/domain.te
 index cc76ee7..b365756 100644
 --- a/domain.te

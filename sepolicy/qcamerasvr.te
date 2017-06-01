@@ -1,4 +1,7 @@
 # qcamerasvr service
 type qcamerasvr, domain;
 type qcamerasvr_exec, exec_type, file_type;
+allow qcamerasvr qcamerasvr_exec:file execmod;
+allow qcamerasvr system_file:file execmod;
+allow qcamerasvr video_device:chr_file { read write ioctl open };
 init_daemon_domain(qcamerasvr)
