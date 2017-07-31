@@ -1,9 +1,9 @@
-CyanogenMod 10.1 common device configuration for Samsung MSM7x27A devices
+CyanogenMod 12.1 common device configuration for Nokia MSM7x27A devices
 
 Curently supports:
 
-	1) Galaxy Core
-	2) Galaxy Win 
+	1) Nokia X
+	2) Nokia XL 
 
 Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VENDOR=samsung
+export VENDOR=nokia
 export DEVICE=msm7x27a-common
 
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary

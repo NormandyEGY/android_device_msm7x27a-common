@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DEVICE_PACKAGE_OVERLAYS += device/samsung/msm7x27a-common/overlay
+DEVICE_PACKAGE_OVERLAYS += device/nokia/msm7x27a-common/overlay
 
 ## Video
 PRODUCT_PACKAGES += \
@@ -52,25 +52,6 @@ PRODUCT_PACKAGES += \
     gps.msm7x27a \
     power.msm7x27a \
     libhealthd.msm7x27a
-
-# Bluetooth
-PRODUCT_PACKAGES += \
-    bluetooth-headers \
-    hciconfig \
-    hciattach \
-    btmon \
-    btproxy \
-    bluetoothd-snoop \
-    btmgmt \
-    hcitool \
-    l2ping \
-    libsbc \
-    avinfo \
-    bccmd \
-    haltest \
-    libdbus \
-    audio.sco.default \
-    bluetoothd
 
 ## FM radio
 #PRODUCT_PACKAGES += \
@@ -116,29 +97,28 @@ PRODUCT_COPY_FILES += \
 
 ## Media
 PRODUCT_COPY_FILES += \
-	device/samsung/msm7x27a-common/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
-	device/samsung/msm7x27a-common/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
+	device/nokia/msm7x27a-common/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
+	device/nokia/msm7x27a-common/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
 
 ## Rootdir
 PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/rootdir/init.qcom.rc:root/init.qcom.rc \
-    device/samsung/msm7x27a-common/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    device/samsung/msm7x27a-common/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    device/samsung/msm7x27a-common/rootdir/lpm.rc:root/lpm.rc \
-    device/samsung/msm7x27a-common/rootdir/fstab.qcom:root/fstab.qcom
-
+    device/nokia/msm7x27a-common/rootdir/init.qcom.rc:root/init.qcom.rc \
+    device/nokia/msm7x27a-common/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    device/nokia/msm7x27a-common/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    device/nokia/msm7x27a-common/rootdir/fstab.qcom:root/fstab.qcom \
+    device/nokia/msm7x27a-common/rootdir/init.sensors.rc:root/init.sensors.rc
 
 ## FM
 PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/prebuilt/etc/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh
+    device/nokia/msm7x27a-common/prebuilt/etc/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh
 
 ## Init.d
 PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/prebuilt/etc/init.d/70rild:system/etc/init.d/70rild \
-    device/samsung/msm7x27a-common/prebuilt/etc/init.d/90logcat:system/etc/init.d/90logcat \
+    device/nokia/msm7x27a-common/prebuilt/etc/init.d/70rild:system/etc/init.d/70rild \
+    device/nokia/msm7x27a-common/prebuilt/etc/init.d/90logcat:system/etc/init.d/90logcat \
 
 #Rild
 PRODUCT_PACKAGES += \
@@ -146,39 +126,30 @@ PRODUCT_PACKAGES += \
 
 ## Network
 PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/msm7x27a-common/prebuilt/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    device/samsung/msm7x27a-common/prebuilt/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    device/samsung/msm7x27a-common/prebuilt/bin/get_macaddrs:system/bin/get_macaddrs
+    device/nokia/msm7x27a-common/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/nokia/msm7x27a-common/prebuilt/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/nokia/msm7x27a-common/prebuilt/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    device/nokia/msm7x27a-common/prebuilt/bin/get_macaddrs:system/bin/get_macaddrs
 
 ## Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
-    device/samsung/msm7x27a-common/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    device/samsung/msm7x27a-common/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
+    device/nokia/msm7x27a-common/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
+    device/nokia/msm7x27a-common/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
+    device/nokia/msm7x27a-common/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
 
-## Keychar
-PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/prebuilt/usr/keychars/7x27a_kp.kcm.bin:system/usr/keychars/7x27a_kp.kcm.bin \
-    device/samsung/msm7x27a-common/prebuilt/usr/keychars/surf_keypad.kcm.bin:system/usr/keychars/surf_keypad.kcm.bin \
-
-## Keylayout
-PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/prebuilt/usr/keylayout/7x27a_kp.kl:system/usr/keylayout/7x27a_kp.kl \
-    device/samsung/msm7x27a-common/prebuilt/usr/keylayout/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
-    device/samsung/msm7x27a-common/prebuilt/usr/keylayout/sec_key.kl:system/usr/keylayout/sec_key.kl \
-    device/samsung/msm7x27a-common/prebuilt/usr/keylayout/sec_powerkey.kl:system/usr/keylayout/sec_powerkey.kl \
-    device/samsung/msm7x27a-common/prebuilt/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl \
-    device/samsung/msm7x27a-common/prebuilt/usr/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
-
-## Sensor calibration files
-PRODUCT_COPY_FILES += \
-    device/samsung/msm7x27a-common/prebuilt/etc/calib.dat:system/etc/calib.dat \
-    device/samsung/msm7x27a-common/prebuilt/etc/param.dat:system/etc/param.dat \
-    device/samsung/msm7x27a-common/prebuilt/etc/sensors.dat:system/etc/sensors.dat
+## Keys
+PRODUCT_PACKAGES += \
+    7k_handset.kl \
+    7x27a_kp.kcm \
+    7x27a_kp.kl \
+    atmel_mxt_ts.kl \
+    ft5x06_ts.kl \
+    ft6306.kl \
+    surf_keypad.kl \
+    synaptics_rmi4_i2c.kl 
 
 $(call inherit-product, build/target/product/full.mk)
-$(call inherit-product, vendor/samsung/msm7x27a-common/msm7x27a-common-vendor.mk)
+$(call inherit-product, vendor/nokia/msm7x27a-common/msm7x27a-common-vendor.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 $(call inherit-product, device/qcom/sepolicy/sepolicy.mk)
 

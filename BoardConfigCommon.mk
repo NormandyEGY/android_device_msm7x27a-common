@@ -28,7 +28,7 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a9
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm7x27a-common/include
+TARGET_SPECIFIC_HEADER_PATH := device/nokia/msm7x27a-common/include
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a5 -mfpu=neon-vfpv4 -mfloat-abi=softfp
@@ -37,11 +37,18 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a5 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 ## Kernel
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=permissive
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01300000
-#TARGET_KERNEL_SOURCE := kernel/samsung/msm7x27a
+BOARD_KERNEL_SPARESIZE := 128
+BOARD_KERNEL_BCHECC_SPARESIZE := 160
+TARGET_USES_UNCOMPRESSED_KERNEL := false
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1 vmalloc=200M androidboot.selinux=permissive
+ARCH_ARM_HAVE_TLS_REGISTER := true
+#TARGET_KERNEL_SOURCE := kernel/nokia/msm7x27a
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6
 KERNEL_TOOLCHAIN_PREFIX := bin/arm-eabi-
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+# Support to build images for 2K NAND page
+BOARD_KERNEL_2KSPARESIZE := 64
 
 ## FM Radio
 #BOARD_HAVE_QCOM_FM := true
@@ -52,7 +59,7 @@ BOARD_NEEDS_MEMORYHEAPPMEM := true
 BOARD_USE_MHEAP_SCREENSHOT := true
 
 ## Camera
-COMMON_GLOBAL_CFLAGS += -DBINDER_COMPAT -DNEEDS_VECTORIMPL_SYMBOLS -DSAMSUNG_CAMERA_LEGACY
+COMMON_GLOBAL_CFLAGS += -DBINDER_COMPAT -DNEEDS_VECTORIMPL_SYMBOLS -Dnokia_CAMERA_LEGACY
 COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
 ## Qcom hardwae
 BOARD_USES_QCOM_HARDWARE := true
@@ -74,7 +81,7 @@ USE_OPENGL_RENDERER := true
 TARGET_QCOM_DISPLAY_VARIANT := caf
 TARGET_DOESNT_USE_FENCE_SYNC := true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
-BOARD_EGL_CFG := device/samsung/msm7x27a-common/prebuilt/lib/egl/egl.cfg
+BOARD_EGL_CFG := device/nokia/msm7x27a-common/prebuilt/lib/egl/egl.cfg
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
@@ -84,7 +91,7 @@ TARGET_USES_QCOM_BSP := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 
 ## GPS
-QCOM_GPS_PATH := device/samsung/msm7x27a-common/gps
+QCOM_GPS_PATH := device/nokia/msm7x27a-common/gps
 BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_GPS := true
 
@@ -106,7 +113,7 @@ BOARD_USES_LEGACY_RIL := true
 BOARD_PROVIDES_LIBRIL := true
 BOARD_PROVIDES_RIL_REFERENCE := true
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
-BOARD_RIL_CLASS := ../../../device/samsung/msm7x27a-common/ril/
+BOARD_RIL_CLASS := ../../../device/nokia/msm7x27a-common/ril/
 COMMON_GLOBAL_CFLAGS += -DRIL_SUPPORTS_SEEK
 COMMON_GLOBAL_CFLAGS += -DRIL_VARIANT_LEGACY
 
@@ -120,37 +127,31 @@ ifeq ($(HOST_OS),linux)
 endif
 
 ## Vold
+BOARD_VOLD_MAX_PARTITIONS := 33
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_MAX_PARTITIONS := 24
+TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
+BOARD_WANTS_EMMC_BOOT := true
 
 ## UMS
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
-BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun%d/file"
-
-## Samsung has weird framebuffer
-TARGET_NO_INITLOGO := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
+BOARD_UMS_LUNFILE := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
 # Charger
 BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_LPM_BOOT_ARGUMENT_NAME := androidboot.bootchg
-BOARD_LPM_BOOT_ARGUMENT_VALUE := true
-
-## Use device specific modules
-TARGET_PROVIDES_LIBLIGHTS := true
 
 ## Override healthd HAL
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm7x27a
 
 # Misc.
-TARGET_SYSTEM_PROP := device/samsung/msm7x27a-common/system.prop
+TARGET_SYSTEM_PROP := device/nokia/msm7x27a-common/system.prop
 
 # Webview
 
 #PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 
 BOARD_SEPOLICY_DIRS += \
-       device/samsung/msm7x27a-common/sepolicy
+       device/nokia/msm7x27a-common/sepolicy
 
 BOARD_SEPOLICY_UNION += \
        file_contexts \
@@ -176,18 +177,28 @@ BOARD_SEPOLICY_UNION += \
        thermal-engine.te \
 
 ## Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/msm7x27a-common/rootdir/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/nokia/msm7x27a-common/rootdir/fstab.qcom
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
-TARGET_RECOVERY_SWIPE := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_HAS_SDCARD_INTERNAL := true
-BOARD_HAS_DOWNLOAD_MODE := true
-BOARD_USES_MMCUTILS := true
-BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_FLASH_BLOCK_SIZE := 131072
 ## Partition sizes
-BOARD_BOOTIMAGE_PARTITION_SIZE := 12582912
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 12582912
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 824288000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 979369984
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00A00000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 465568000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 2920577761
+BOARD_CACHEIMAGE_PARTITION_SIZE := 41943040
+TARGET_NO_RECOVERY := false
+
+BOARD_CACHE_DEVICE := /dev/block/platform/msm_sdcc.3/by-num/p19
+BOARD_CACHE_FILESYSTEM := ext4
+BOARD_CACHE_FILESYSTEM_OPTIONS := rw
+BOARD_SYSTEM_DEVICE := /dev/block/platform/msm_sdcc.3/by-num/p18
+BOARD_SYSTEM_FILESYSTEM := ext4
+BOARD_SYSTEM_FILESYSTEM_OPTIONS := rw
+BOARD_DATA_DEVICE := /dev/block/platform/msm_sdcc.3/by-num/p22
+BOARD_DATA_FILESYSTEM := ext4
+BOARD_DATA_FILESYSTEM_OPTIONS := rw
+
+## Disable block based
+BLOCK_BASED_OTA=false
